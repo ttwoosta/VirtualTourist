@@ -13,11 +13,11 @@ public class CoreDataStackManager {
 
     var objectModelName: String!
 
-    init(managedObjectModelName: String) {
+    public init(managedObjectModelName: String) {
         objectModelName = managedObjectModelName
     }
     
-    lazy var dataStoreURL: NSURL = {
+    public lazy var dataStoreURL: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let docURL = urls.last as! NSURL
         let dataStoreURL = docURL.URLByAppendingPathComponent("\(self.objectModelName).sqlite")
@@ -26,7 +26,7 @@ public class CoreDataStackManager {
     
     // The managed object model for the application. This property is not optional. 
     // It is a fatal error for the application not to be able to find and load its model.
-    lazy var managedObjectModel: NSManagedObjectModel = {
+    public lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = NSBundle.mainBundle().URLForResource(self.objectModelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
@@ -36,7 +36,7 @@ public class CoreDataStackManager {
     // having added the store for the application to it. 
     // This property is optional since there are legitimate error conditions
     // that could cause the creation of the store to fail.
-    lazy var persistenceStoreCoordinator: NSPersistentStoreCoordinator? = {
+    public lazy var persistenceStoreCoordinator: NSPersistentStoreCoordinator? = {
         // create the coordinator
         var coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
@@ -59,7 +59,7 @@ public class CoreDataStackManager {
     // (which is already bound to the persistent store coordinator for the application.) 
     // This property is optional since there are legitimate error conditions 
     // that could cause the creation of the context to fail.
-    lazy var managedObjectContext: NSManagedObjectContext? = {
+    public lazy var managedObjectContext: NSManagedObjectContext? = {
         let psc = self.persistenceStoreCoordinator
         var context = NSManagedObjectContext()
         context.persistentStoreCoordinator = psc
@@ -67,7 +67,7 @@ public class CoreDataStackManager {
     }()
     
     
-    func saveContext() {
+    public func saveContext() {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
             if moc.hasChanges && !moc.save(&error) {

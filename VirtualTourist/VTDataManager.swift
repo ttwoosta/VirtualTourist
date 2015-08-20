@@ -17,4 +17,11 @@ public class VTDataManager: CoreDataStackManager {
         }
         return Singleton.sharedInstance
     }
+    
+    
+    public struct EntityNames {
+        public static let Pin: String = "VTPin"
+        public static let Photo: String = "VTPhoto"
+    }
+    
 }
