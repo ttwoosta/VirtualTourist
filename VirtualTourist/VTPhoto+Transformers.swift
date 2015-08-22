@@ -64,7 +64,7 @@ public class VTURLTransformer: NSValueTransformer {
     
     // class of the "output" objects, as returned by transformedValue:
     override public class func transformedValueClass() -> AnyClass {
-        return NSString.self
+        return NSData.self
     }
     
     // flag indicating whether transformation is read-only or not
@@ -75,14 +75,16 @@ public class VTURLTransformer: NSValueTransformer {
     override public func transformedValue(value: AnyObject?) -> AnyObject? {
         
         if let url = value as? NSURL {
-            return url.absoluteString
+            return url.absoluteString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         }
         return nil
     }
     
     override public func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
-        if let urlString = value as? String {
-            return NSURL(string: urlString)
+        if let strData = value as? NSData {
+            if let urlString = NSString(data: strData, encoding: NSUTF8StringEncoding) as? String {
+                return NSURL(string: urlString)
+            }
         }
         
         return nil

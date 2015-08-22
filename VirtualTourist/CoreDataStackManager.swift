@@ -61,7 +61,7 @@ public class CoreDataStackManager {
     // that could cause the creation of the context to fail.
     public lazy var managedObjectContext: NSManagedObjectContext? = {
         let psc = self.persistenceStoreCoordinator
-        var context = NSManagedObjectContext()
+        var context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         context.persistentStoreCoordinator = psc
         return context
     }()

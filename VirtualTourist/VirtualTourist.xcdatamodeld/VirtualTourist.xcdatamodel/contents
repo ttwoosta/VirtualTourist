@@ -3,7 +3,7 @@
     <entity name="VTPhoto" representedClassName="VirtualTourist.VTPhoto" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName="VTImageTransformer" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName="VTImageTransformer" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable" valueTransformerName="VTURLTransformer" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,13 +12,14 @@
         <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VTPin" inverseName="photos" inverseEntity="VTPin" syncable="YES"/>
     </entity>
     <entity name="VTPin" representedClassName="VirtualTourist.VTPin" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VTPhoto" inverseName="pin" inverseEntity="VTPhoto" syncable="YES"/>
     </entity>
     <elements>
-        <element name="VTPin" positionX="-243" positionY="30" width="128" height="103"/>
+        <element name="VTPin" positionX="-243" positionY="30" width="128" height="118"/>
         <element name="VTPhoto" positionX="-18" positionY="27" width="128" height="178"/>
     </elements>
 </model>

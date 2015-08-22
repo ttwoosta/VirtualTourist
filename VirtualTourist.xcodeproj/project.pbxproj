@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06A637C61B84CCA500B17AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A637C51B84CCA500B17AD3 /* AppDelegate.swift */; };
+		06A637C61B84CCA500B17AD3 /* VTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A637C51B84CCA500B17AD3 /* VTAppDelegate.swift */; };
 		06A637C91B84CCA500B17AD3 /* VirtualTourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06A637C71B84CCA500B17AD3 /* VirtualTourist.xcdatamodeld */; };
-		06A637CB1B84CCA500B17AD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A637CA1B84CCA500B17AD3 /* ViewController.swift */; };
+		06A637CB1B84CCA500B17AD3 /* VTMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A637CA1B84CCA500B17AD3 /* VTMapVC.swift */; };
 		06A637CE1B84CCA500B17AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A637CC1B84CCA500B17AD3 /* Main.storyboard */; };
 		06A637D01B84CCA500B17AD3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A637CF1B84CCA500B17AD3 /* Images.xcassets */; };
 		06A637D31B84CCA500B17AD3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A637D11B84CCA500B17AD3 /* LaunchScreen.xib */; };
@@ -26,6 +26,20 @@
 		06A637FE1B857D2400B17AD3 /* FlickrClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A637FD1B857D2400B17AD3 /* FlickrClientTests.swift */; };
 		06A638001B858B0600B17AD3 /* PhotosJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 06A637FF1B858B0600B17AD3 /* PhotosJson.json */; };
 		06A638041B862AFD00B17AD3 /* VTPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638021B862AC400B17AD3 /* VTPhoto.swift */; };
+		06A6380E1B86425400B17AD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A6380B1B86422700B17AD3 /* MapKit.framework */; };
+		06A6380F1B86425400B17AD3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A638091B86421F00B17AD3 /* CoreData.framework */; };
+		06A638101B86425400B17AD3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A638071B86421800B17AD3 /* UIKit.framework */; };
+		06A638121B864AB100B17AD3 /* VTSerializableRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638111B864AB100B17AD3 /* VTSerializableRegion.swift */; };
+		06A638141B864F9A00B17AD3 /* SerializeRegionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638131B864F9A00B17AD3 /* SerializeRegionTests.swift */; };
+		06A638161B8657C300B17AD3 /* NSUserDefault+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638151B8657C300B17AD3 /* NSUserDefault+Settings.swift */; };
+		06A638181B86B5E400B17AD3 /* VTPin+Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638171B86B5E400B17AD3 /* VTPin+Annotation.swift */; };
+		06A6381A1B86B66500B17AD3 /* VTPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638191B86B66500B17AD3 /* VTPointAnnotation.swift */; };
+		06A6381C1B86D3A000B17AD3 /* VTPinDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A6381B1B86D3A000B17AD3 /* VTPinDetailVC.swift */; };
+		06A6381E1B86D47200B17AD3 /* VTImageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A6381D1B86D47200B17AD3 /* VTImageCVC.swift */; };
+		06A638201B86E2F000B17AD3 /* VTImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A6381F1B86E2F000B17AD3 /* VTImageCell.swift */; };
+		06A638221B87A20200B17AD3 /* VTFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638211B87A20200B17AD3 /* VTFetchedResultsController.swift */; };
+		06A638261B87D98600B17AD3 /* VTFetchedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638251B87D98600B17AD3 /* VTFetchedResult.swift */; };
+		06A638291B8802F000B17AD3 /* VTImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638281B8802F000B17AD3 /* VTImageFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +55,9 @@
 /* Begin PBXFileReference section */
 		06A637C01B84CCA500B17AD3 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A637C41B84CCA500B17AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06A637C51B84CCA500B17AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		06A637C51B84CCA500B17AD3 /* VTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTAppDelegate.swift; sourceTree = "<group>"; };
 		06A637C81B84CCA500B17AD3 /* VirtualTourist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VirtualTourist.xcdatamodel; sourceTree = "<group>"; };
-		06A637CA1B84CCA500B17AD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		06A637CA1B84CCA500B17AD3 /* VTMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTMapVC.swift; sourceTree = "<group>"; };
 		06A637CD1B84CCA500B17AD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06A637CF1B84CCA500B17AD3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		06A637D21B84CCA500B17AD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -62,6 +76,20 @@
 		06A637FD1B857D2400B17AD3 /* FlickrClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClientTests.swift; sourceTree = "<group>"; };
 		06A637FF1B858B0600B17AD3 /* PhotosJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhotosJson.json; sourceTree = "<group>"; };
 		06A638021B862AC400B17AD3 /* VTPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTPhoto.swift; sourceTree = "<group>"; };
+		06A638071B86421800B17AD3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		06A638091B86421F00B17AD3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		06A6380B1B86422700B17AD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		06A638111B864AB100B17AD3 /* VTSerializableRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTSerializableRegion.swift; sourceTree = "<group>"; };
+		06A638131B864F9A00B17AD3 /* SerializeRegionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializeRegionTests.swift; sourceTree = "<group>"; };
+		06A638151B8657C300B17AD3 /* NSUserDefault+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefault+Settings.swift"; sourceTree = "<group>"; };
+		06A638171B86B5E400B17AD3 /* VTPin+Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VTPin+Annotation.swift"; sourceTree = "<group>"; };
+		06A638191B86B66500B17AD3 /* VTPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTPointAnnotation.swift; sourceTree = "<group>"; };
+		06A6381B1B86D3A000B17AD3 /* VTPinDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTPinDetailVC.swift; sourceTree = "<group>"; };
+		06A6381D1B86D47200B17AD3 /* VTImageCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTImageCVC.swift; sourceTree = "<group>"; };
+		06A6381F1B86E2F000B17AD3 /* VTImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTImageCell.swift; sourceTree = "<group>"; };
+		06A638211B87A20200B17AD3 /* VTFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTFetchedResultsController.swift; sourceTree = "<group>"; };
+		06A638251B87D98600B17AD3 /* VTFetchedResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTFetchedResult.swift; sourceTree = "<group>"; };
+		06A638281B8802F000B17AD3 /* VTImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTImageFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A6380E1B86425400B17AD3 /* MapKit.framework in Frameworks */,
+				06A6380F1B86425400B17AD3 /* CoreData.framework in Frameworks */,
+				06A638101B86425400B17AD3 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				06A637C21B84CCA500B17AD3 /* VirtualTourist */,
+				06A6380D1B86424100B17AD3 /* Frameworks */,
 				06A637DB1B84CCA500B17AD3 /* VirtualTouristTests */,
 				06A637C11B84CCA500B17AD3 /* Products */,
 			);
@@ -105,8 +137,14 @@
 			children = (
 				06A637F01B84D06B00B17AD3 /* Data Model */,
 				06A638011B8625F500B17AD3 /* FlickrClient */,
-				06A637C51B84CCA500B17AD3 /* AppDelegate.swift */,
-				06A637CA1B84CCA500B17AD3 /* ViewController.swift */,
+				06A637C51B84CCA500B17AD3 /* VTAppDelegate.swift */,
+				06A638111B864AB100B17AD3 /* VTSerializableRegion.swift */,
+				06A638151B8657C300B17AD3 /* NSUserDefault+Settings.swift */,
+				06A637CA1B84CCA500B17AD3 /* VTMapVC.swift */,
+				06A6381B1B86D3A000B17AD3 /* VTPinDetailVC.swift */,
+				06A638271B87E70800B17AD3 /* Fetched Result Controller */,
+				06A6381D1B86D47200B17AD3 /* VTImageCVC.swift */,
+				06A6381F1B86E2F000B17AD3 /* VTImageCell.swift */,
 				06A637CC1B84CCA500B17AD3 /* Main.storyboard */,
 				06A637CF1B84CCA500B17AD3 /* Images.xcassets */,
 				06A637D11B84CCA500B17AD3 /* LaunchScreen.xib */,
@@ -128,6 +166,7 @@
 			children = (
 				06A637DE1B84CCA500B17AD3 /* DataModelTests.swift */,
 				06A637FD1B857D2400B17AD3 /* FlickrClientTests.swift */,
+				06A638131B864F9A00B17AD3 /* SerializeRegionTests.swift */,
 				06A637F31B84E07600B17AD3 /* test_photo.jpg */,
 				06A637DC1B84CCA500B17AD3 /* Supporting Files */,
 				06A637FF1B858B0600B17AD3 /* PhotosJson.json */,
@@ -150,6 +189,8 @@
 				06A637EA1B84CD3E00B17AD3 /* VTDataManager.swift */,
 				06A637C71B84CCA500B17AD3 /* VirtualTourist.xcdatamodeld */,
 				06A637EE1B84D02A00B17AD3 /* VTPin.swift */,
+				06A638171B86B5E400B17AD3 /* VTPin+Annotation.swift */,
+				06A638191B86B66500B17AD3 /* VTPointAnnotation.swift */,
 				06A638021B862AC400B17AD3 /* VTPhoto.swift */,
 				06A637F11B84DBE800B17AD3 /* VTPhoto+Transformers.swift */,
 			);
@@ -163,8 +204,28 @@
 				06A637F51B856BB600B17AD3 /* FlickrClient.swift */,
 				06A637F91B85719E00B17AD3 /* FlickrClient+Constants.swift */,
 				06A637FB1B85742800B17AD3 /* FlickrClient+Convience.swift */,
+				06A638281B8802F000B17AD3 /* VTImageFetcher.swift */,
 			);
 			name = FlickrClient;
+			sourceTree = "<group>";
+		};
+		06A6380D1B86424100B17AD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06A6380B1B86422700B17AD3 /* MapKit.framework */,
+				06A638091B86421F00B17AD3 /* CoreData.framework */,
+				06A638071B86421800B17AD3 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		06A638271B87E70800B17AD3 /* Fetched Result Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06A638211B87A20200B17AD3 /* VTFetchedResultsController.swift */,
+				06A638251B87D98600B17AD3 /* VTFetchedResult.swift */,
+			);
+			name = "Fetched Result Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,17 +330,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06A637CB1B84CCA500B17AD3 /* ViewController.swift in Sources */,
+				06A637CB1B84CCA500B17AD3 /* VTMapVC.swift in Sources */,
+				06A6381A1B86B66500B17AD3 /* VTPointAnnotation.swift in Sources */,
+				06A638261B87D98600B17AD3 /* VTFetchedResult.swift in Sources */,
+				06A638201B86E2F000B17AD3 /* VTImageCell.swift in Sources */,
 				06A637F81B856C8400B17AD3 /* BaseClient.swift in Sources */,
+				06A638221B87A20200B17AD3 /* VTFetchedResultsController.swift in Sources */,
 				06A637FC1B85742800B17AD3 /* FlickrClient+Convience.swift in Sources */,
 				06A637E91B84CD1100B17AD3 /* CoreDataStackManager.swift in Sources */,
+				06A6381E1B86D47200B17AD3 /* VTImageCVC.swift in Sources */,
+				06A638291B8802F000B17AD3 /* VTImageFetcher.swift in Sources */,
+				06A638161B8657C300B17AD3 /* NSUserDefault+Settings.swift in Sources */,
+				06A6381C1B86D3A000B17AD3 /* VTPinDetailVC.swift in Sources */,
 				06A638041B862AFD00B17AD3 /* VTPhoto.swift in Sources */,
 				06A637FA1B85719E00B17AD3 /* FlickrClient+Constants.swift in Sources */,
+				06A638181B86B5E400B17AD3 /* VTPin+Annotation.swift in Sources */,
+				06A638121B864AB100B17AD3 /* VTSerializableRegion.swift in Sources */,
 				06A637F21B84DBE800B17AD3 /* VTPhoto+Transformers.swift in Sources */,
 				06A637EF1B84D02A00B17AD3 /* VTPin.swift in Sources */,
 				06A637EB1B84CD3E00B17AD3 /* VTDataManager.swift in Sources */,
 				06A637C91B84CCA500B17AD3 /* VirtualTourist.xcdatamodeld in Sources */,
-				06A637C61B84CCA500B17AD3 /* AppDelegate.swift in Sources */,
+				06A637C61B84CCA500B17AD3 /* VTAppDelegate.swift in Sources */,
 				06A637F61B856BB600B17AD3 /* FlickrClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +361,7 @@
 			files = (
 				06A637DF1B84CCA500B17AD3 /* DataModelTests.swift in Sources */,
 				06A637FE1B857D2400B17AD3 /* FlickrClientTests.swift in Sources */,
+				06A638141B864F9A00B17AD3 /* SerializeRegionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

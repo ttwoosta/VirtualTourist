@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  VTAppDelegate.swift
 //  VirtualTourist
 //
 //  Created by Tu Tong on 8/19/15.
@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class VTAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 

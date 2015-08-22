@@ -12,7 +12,7 @@ import CoreData
 public class VTPhoto: NSManagedObject {
 
     @NSManaged public var title: String
-    @NSManaged public var image: UIImage
+    @NSManaged public var image: UIImage?
     @NSManaged public var id: NSNumber
     @NSManaged public var width: NSNumber
     @NSManaged public var height: NSNumber

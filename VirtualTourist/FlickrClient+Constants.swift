@@ -26,7 +26,7 @@ extension FlickrClient {
         static public let SAFE_SEARCH = 1
         static public let DATA_FORMAT = "json"
         static public let NO_JSON_CALLBACK = 1
-        static public let PER_PAGE = 50
+        static public let PER_PAGE = 21
     }
     
     public struct ParameterKeys {

@@ -173,7 +173,7 @@ class DataModelTests: XCTestCase {
         println(cmpData.length)
         
         //XCTAssertEqual(data, cmpData)
-        XCTAssertEqual(cmpImage.size, image.size)
+        XCTAssertEqual(cmpImage.size, image!.size)
         
         
         let fileManager = NSFileManager.defaultManager()
