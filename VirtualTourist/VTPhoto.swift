@@ -9,11 +9,9 @@
 import UIKit
 import CoreData
 
-public class VTPhoto: NSManagedObject {
+public class VTPhoto: VTObject {
 
     @NSManaged public var title: String
-    @NSManaged public var image: UIImage?
-    @NSManaged public var id: NSNumber
     @NSManaged public var width: NSNumber
     @NSManaged public var height: NSNumber
     @NSManaged public var imageURL: NSURL
@@ -46,10 +44,8 @@ public class VTPhoto: NSManagedObject {
             imageURL = NSURL(string: imageURLString)!
         }
         
-        if let idValue = dict[JSONKeys.ID] as? NSString {
-            if let idInt = idValue.integerValue as Int! {
-                id = NSNumber(integer: idInt)
-            }
+        if let idValue = dict[JSONKeys.ID] as? String {
+            id = idValue
         }
         if let widthValue = dict[JSONKeys.ImageWidth] as? NSString {
             if let widthFloat = widthValue.floatValue as Float! {
@@ -61,7 +57,24 @@ public class VTPhoto: NSManagedObject {
                 height = NSNumber(float: heightFloat)
             }
         }
+    }
+    
+    override public func willSave() {
+        if deleted {
+            VTDataManager.Caches.imageCache.storeImage(nil, imageData: nil, withIdentifier: id)
+        }
         
+        super.willSave()
+    }
+    
+    var image: UIImage? {
+        get {
+            return VTDataManager.Caches.imageCache.imageWithIdentifier(id)
+        }
+    }
+    
+    func setImage(image: UIImage, imageData: NSData) {
+        VTDataManager.Caches.imageCache.storeImage(image, imageData: imageData, withIdentifier: id)
     }
     
 }

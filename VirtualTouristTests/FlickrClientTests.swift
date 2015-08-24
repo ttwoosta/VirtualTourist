@@ -52,7 +52,7 @@ class FlickrClientTests: XCTestCase {
         
         let expectation = self.expectationWithDescription(nil)
         
-        FlickrClient.searchPhotosByCoodinate(coord) { result, error in
+        FlickrClient.searchPhotosByCoodinate(coord, page: nil) { result, error in
             XCTAssertNil(error)
             XCTAssertNotNil(result)
             
@@ -70,7 +70,7 @@ class FlickrClientTests: XCTestCase {
         
         let expectation = self.expectationWithDescription(nil)
         
-        FlickrClient.searchPhotosByCoodinate(coord) { result, error in
+        FlickrClient.searchPhotosByCoodinate(coord, page: nil) { result, error in
             XCTAssertNil(result)
             XCTAssertNotNil(error)
             

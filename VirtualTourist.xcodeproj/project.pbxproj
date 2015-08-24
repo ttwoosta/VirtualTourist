@@ -40,6 +40,10 @@
 		06A638221B87A20200B17AD3 /* VTFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638211B87A20200B17AD3 /* VTFetchedResultsController.swift */; };
 		06A638261B87D98600B17AD3 /* VTFetchedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638251B87D98600B17AD3 /* VTFetchedResult.swift */; };
 		06A638291B8802F000B17AD3 /* VTImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A638281B8802F000B17AD3 /* VTImageFetcher.swift */; };
+		06A6382D1B88D26800B17AD3 /* VTImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A6382C1B88D26800B17AD3 /* VTImageCache.swift */; };
+		06DD95971B8A3BC200E9351D /* VTDataManager+FetchPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DD95961B8A3BC200E9351D /* VTDataManager+FetchPhotos.swift */; };
+		06DD95991B8AB23800E9351D /* VTBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DD95981B8AB23800E9351D /* VTBottomBar.swift */; };
+		06DD959B1B8ACCD200E9351D /* VTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DD959A1B8ACCD200E9351D /* VTObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,10 @@
 		06A638211B87A20200B17AD3 /* VTFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTFetchedResultsController.swift; sourceTree = "<group>"; };
 		06A638251B87D98600B17AD3 /* VTFetchedResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTFetchedResult.swift; sourceTree = "<group>"; };
 		06A638281B8802F000B17AD3 /* VTImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTImageFetcher.swift; sourceTree = "<group>"; };
+		06A6382C1B88D26800B17AD3 /* VTImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTImageCache.swift; sourceTree = "<group>"; };
+		06DD95961B8A3BC200E9351D /* VTDataManager+FetchPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VTDataManager+FetchPhotos.swift"; sourceTree = "<group>"; };
+		06DD95981B8AB23800E9351D /* VTBottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTBottomBar.swift; sourceTree = "<group>"; };
+		06DD959A1B8ACCD200E9351D /* VTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +149,8 @@
 				06A638111B864AB100B17AD3 /* VTSerializableRegion.swift */,
 				06A638151B8657C300B17AD3 /* NSUserDefault+Settings.swift */,
 				06A637CA1B84CCA500B17AD3 /* VTMapVC.swift */,
-				06A6381B1B86D3A000B17AD3 /* VTPinDetailVC.swift */,
+				06DD959C1B8ACF0400E9351D /* Photo Album */,
 				06A638271B87E70800B17AD3 /* Fetched Result Controller */,
-				06A6381D1B86D47200B17AD3 /* VTImageCVC.swift */,
-				06A6381F1B86E2F000B17AD3 /* VTImageCell.swift */,
 				06A637CC1B84CCA500B17AD3 /* Main.storyboard */,
 				06A637CF1B84CCA500B17AD3 /* Images.xcassets */,
 				06A637D11B84CCA500B17AD3 /* LaunchScreen.xib */,
@@ -187,12 +193,15 @@
 			children = (
 				06A637E81B84CD1100B17AD3 /* CoreDataStackManager.swift */,
 				06A637EA1B84CD3E00B17AD3 /* VTDataManager.swift */,
+				06DD95961B8A3BC200E9351D /* VTDataManager+FetchPhotos.swift */,
 				06A637C71B84CCA500B17AD3 /* VirtualTourist.xcdatamodeld */,
+				06DD959A1B8ACCD200E9351D /* VTObject.swift */,
 				06A637EE1B84D02A00B17AD3 /* VTPin.swift */,
 				06A638171B86B5E400B17AD3 /* VTPin+Annotation.swift */,
 				06A638191B86B66500B17AD3 /* VTPointAnnotation.swift */,
 				06A638021B862AC400B17AD3 /* VTPhoto.swift */,
 				06A637F11B84DBE800B17AD3 /* VTPhoto+Transformers.swift */,
+				06A6382C1B88D26800B17AD3 /* VTImageCache.swift */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -226,6 +235,17 @@
 				06A638251B87D98600B17AD3 /* VTFetchedResult.swift */,
 			);
 			name = "Fetched Result Controller";
+			sourceTree = "<group>";
+		};
+		06DD959C1B8ACF0400E9351D /* Photo Album */ = {
+			isa = PBXGroup;
+			children = (
+				06A6381B1B86D3A000B17AD3 /* VTPinDetailVC.swift */,
+				06DD95981B8AB23800E9351D /* VTBottomBar.swift */,
+				06A6381D1B86D47200B17AD3 /* VTImageCVC.swift */,
+				06A6381F1B86E2F000B17AD3 /* VTImageCell.swift */,
+			);
+			name = "Photo Album";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,11 +361,15 @@
 				06A6381E1B86D47200B17AD3 /* VTImageCVC.swift in Sources */,
 				06A638291B8802F000B17AD3 /* VTImageFetcher.swift in Sources */,
 				06A638161B8657C300B17AD3 /* NSUserDefault+Settings.swift in Sources */,
+				06DD95971B8A3BC200E9351D /* VTDataManager+FetchPhotos.swift in Sources */,
 				06A6381C1B86D3A000B17AD3 /* VTPinDetailVC.swift in Sources */,
 				06A638041B862AFD00B17AD3 /* VTPhoto.swift in Sources */,
 				06A637FA1B85719E00B17AD3 /* FlickrClient+Constants.swift in Sources */,
 				06A638181B86B5E400B17AD3 /* VTPin+Annotation.swift in Sources */,
+				06DD959B1B8ACCD200E9351D /* VTObject.swift in Sources */,
+				06A6382D1B88D26800B17AD3 /* VTImageCache.swift in Sources */,
 				06A638121B864AB100B17AD3 /* VTSerializableRegion.swift in Sources */,
+				06DD95991B8AB23800E9351D /* VTBottomBar.swift in Sources */,
 				06A637F21B84DBE800B17AD3 /* VTPhoto+Transformers.swift in Sources */,
 				06A637EF1B84D02A00B17AD3 /* VTPin.swift in Sources */,
 				06A637EB1B84CD3E00B17AD3 /* VTDataManager.swift in Sources */,

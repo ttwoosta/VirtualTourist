@@ -23,11 +23,11 @@ extension FlickrClient {
         return "\(bottom_left_lon),\(bottom_left_lat),\(top_right_lon),\(top_right_lat)"
     }
     
-    public class func searchPhotosByCoodinate(coordinate: CLLocationCoordinate2D, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionTask {
+    public class func searchPhotosByCoodinate(coordinate: CLLocationCoordinate2D, page: Int!, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionTask {
         
         let bbox = createBoundingBoxString(coordinate.latitude, longitude: coordinate.longitude)
         
-        let parameters = [ ParameterKeys.BoundingBox: bbox,
+        var parameters = [ ParameterKeys.BoundingBox: bbox,
             ParameterKeys.Extras: Constants.EXTRAS,
             ParameterKeys.Method: Constants.METHOD_NAME,
             ParameterKeys.SafeSearch: Constants.SAFE_SEARCH,
@@ -35,11 +35,18 @@ extension FlickrClient {
             ParameterKeys.NoJsonCallback: Constants.NO_JSON_CALLBACK,
             ParameterKeys.PerPage: Constants.PER_PAGE ] as [String: AnyObject]
         
+        // user specify page value
+        if page != nil && page > 1 {
+            parameters[ParameterKeys.Page] = page
+        }
+        
         let task = sharedInstance().taskForGETMethod(parameters) { result, error in
             var results: AnyObject? = nil
             
-            if let photos = result.valueForKeyPath(JSONResponseKeys.PhotosKeyPath) as? [[String: AnyObject]] {
-                results = photos as AnyObject
+            if error == nil && result != nil {
+                if let photos = result.valueForKeyPath(JSONResponseKeys.PhotosKeyPath) as? [[String: AnyObject]] {
+                    results = photos as AnyObject
+                }
             }
             
             completionHandler(result: results, error: error)

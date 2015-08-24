@@ -52,7 +52,15 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
         URLSession = NSURLSession(configuration: conf, delegate: self, delegateQueue: queue)
     }
     
-    public class func downloadImageForURL(url: NSURL, completionHandler: (image: UIImage!, error: NSError?) -> Void) -> NSURLSessionTask {
+    public class func cancelAllTasks() {
+        getDataTasksWithCompletionHandler() { dataTasks in
+            for task in dataTasks as! [NSURLSessionTask] {
+                task.cancel()
+            }
+        }
+    }
+    
+    public class func downloadImageForURL(url: NSURL, completionHandler: (image: UIImage!, imageData: NSData!, error: NSError?) -> Void) -> NSURLSessionTask {
         // create url request
         let URLRequest = NSURLRequest(URL: url)
         
@@ -60,7 +68,7 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
         let task = sharedInstance().URLSession.dataTaskWithRequest(URLRequest) { data, response, error in
             
             if error != nil {
-                completionHandler(image: nil, error: error)
+                completionHandler(image: nil, imageData: nil, error: error)
             }
             
             // convert to Http response
@@ -68,21 +76,21 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
             
             if httpRes.statusCode == 200 {
                 if let image = UIImage(data: data) {
-                    completionHandler(image: image, error: nil)
+                    completionHandler(image: image, imageData: data, error: nil)
                 }
                 else {
                     // create no image error
                     let httpError = NSError(domain: ErrorDomain.Client,
                         code: 1,
                         userInfo: [NSLocalizedDescriptionKey: "An error occur when initialize image"])
-                    completionHandler(image: nil, error: httpError)
+                    completionHandler(image: nil, imageData: nil, error: httpError)
                 }
             }
             else {
                 let httpError = NSError(domain: ErrorDomain.Client,
                     code: httpRes.statusCode,
                     userInfo: [NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(httpRes.statusCode)])
-                completionHandler(image: nil, error: httpError)
+                completionHandler(image: nil, imageData: nil, error: httpError)
             }
             
         }
@@ -97,11 +105,11 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
         }
     }
     
-    public class func fetchImageForURL(url: NSURL, getImageHandler: (image: UIImage!, error: NSError?) -> Void, completionHandler: () -> Void) -> NSURLSessionTask {
+    public class func fetchImageForURL(url: NSURL, getImageHandler: (image: UIImage!, imageData: NSData!, error: NSError?) -> Void, completionHandler: () -> Void) -> NSURLSessionTask {
         
-        let task = downloadImageForURL(url) { image, error in
+        let task = downloadImageForURL(url) { image, imageData, error in
             dispatch_async(dispatch_get_main_queue()) {
-                getImageHandler(image: image, error: error)
+                getImageHandler(image: image, imageData: imageData, error: error)
             }
             self.getDataTasksWithCompletionHandler() { dataTasks in
                 if dataTasks.count == 0 {

@@ -109,75 +109,7 @@ class DataModelTests: XCTestCase {
         XCTAssertEqual(photo.imageURL.absoluteString!, "https://farm1.staticflickr.com/746/20723764255_2894e27ddf.jpg")
         XCTAssertEqual(photo.width.floatValue, 500)
         XCTAssertEqual(photo.height.floatValue, 375)
-        XCTAssertEqual(photo.id.integerValue, 20723764255)
-       
-    }
-    
-    //////////////////////////////////
-    //  MARK: Image Transformer
-    /////////////////////////////////
-    
-    func get_photo_fixture() -> NSData {
-        // // create bundle and get fixture
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let fixtureURL = bundle.URLForResource("test_photo.jpg", withExtension: nil)
-        XCTAssertNotNil(fixtureURL)
-        
-        let data = NSData(contentsOfURL: fixtureURL!)
-        XCTAssertNotNil(data)
-        
-        return data!
-    }
-    
-    func create_an_photo_for_testing() {
-        
-        let entity = NSEntityDescription.entityForName(VTDataManager.EntityNames.Photo, inManagedObjectContext: moc)!
-        let photo = VTPhoto(entity: entity, insertIntoManagedObjectContext: moc)
-        photo.title = "testing_photo"
-        XCTAssertNotNil(photo, "Photo can't be initializes")
-        
-        let data = get_photo_fixture()
-        let image = UIImage(data: data)
-        XCTAssertNotNil(image)
-        
-        photo.image = image!
-        
-        let pImage = photo.image
-        XCTAssertNotNil(pImage)
-        
-        VTDataManager.sharedInstance().saveContext()
-    }
-    
-    func get_testing_photo_object() -> VTPhoto {
-        let fetchRequest = NSFetchRequest(entityName: "VTPhoto")
-        fetchRequest.predicate = NSPredicate(format: "title == %@", "testing_photo")
-        fetchRequest.fetchLimit = 1
-        
-        return moc.executeFetchRequest(fetchRequest, error: nil)?.last as! VTPhoto
-    }
-    
-    func test_photo_transformer() {
-        create_an_photo_for_testing()
-        moc.reset()
-        
-        // photo objects
-        let photo = get_testing_photo_object()
-        let image = photo.image
-        let data = UIImageJPEGRepresentation(image, 1.0)
-        
-        // fixture objects
-        let cmpData = get_photo_fixture()
-        let cmpImage = UIImage(data: cmpData)!
-        
-        println(data.length)
-        println(cmpData.length)
-        
-        //XCTAssertEqual(data, cmpData)
-        XCTAssertEqual(cmpImage.size, image!.size)
-        
-        
-        let fileManager = NSFileManager.defaultManager()
-        fileManager.removeItemAtURL(VTDataManager.sharedInstance().dataStoreURL, error: nil)
+        XCTAssertEqual(photo.id, "20723764255")
     }
     
     

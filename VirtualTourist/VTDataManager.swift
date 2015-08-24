@@ -18,6 +18,11 @@ public class VTDataManager: CoreDataStackManager {
         return Singleton.sharedInstance
     }
     
+    // MARK: - Shared Image Cache
+    
+    struct Caches {
+        static let imageCache = VTImageCache()
+    }
     
     public struct EntityNames {
         public static let Pin: String = "VTPin"

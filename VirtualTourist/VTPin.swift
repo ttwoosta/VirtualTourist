@@ -10,17 +10,31 @@ import Foundation
 import CoreData
 import MapKit
 
-public class VTPin: NSManagedObject {
+public class VTPin: VTObject {
 
     @NSManaged public var created: NSDate
     @NSManaged public var longitude: NSNumber
     @NSManaged public var latitude: NSNumber
-    @NSManaged public var name: String
+    @NSManaged private var flickrPage: NSNumber // default page id will be 1
     @NSManaged public var photos: [VTPhoto]
     
     public override func awakeFromInsert() {
         super.awakeFromInsert()
         created = NSDate()
+        id = NSUUID().UUIDString
+    }
+    
+    public var flikrSearchNextPageValue: Int {
+        return  flikrSearchPage + 1
+    }
+    
+    public var flikrSearchPage: Int {
+        get {
+            return flickrPage.integerValue
+        }
+        set {
+            flickrPage = NSNumber(integer: newValue)
+        }
     }
 
 }

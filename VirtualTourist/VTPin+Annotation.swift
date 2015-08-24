@@ -27,7 +27,7 @@ extension VTPin {
     public func pointAnnotation() -> VTPointAnnotation {
         
         // create a returned point annnotation
-        var annotation = VTPointAnnotation(coord: coordinate)
+        var annotation = VTPointAnnotation(coord: coordinate, id: id)
         
         //annotation.title = annoTitle()
         //annotation.subtitle = annoSubtitle()

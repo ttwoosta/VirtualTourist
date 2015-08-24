@@ -10,7 +10,7 @@ import UIKit
 
 class VTImageCell: UICollectionViewCell {
     
-    var identifier: NSNumber!
+    var identifier: String!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -20,6 +20,12 @@ class VTImageCell: UICollectionViewCell {
     weak var taskToCancelIfReused: NSURLSessionTask? {
         didSet {
             oldValue?.cancel()
+        }
+    }
+    
+    override var selected: Bool {
+        didSet {
+            imageView.alpha = selected ? 0.5 : 1.0
         }
     }
 }

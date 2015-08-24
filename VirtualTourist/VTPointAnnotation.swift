@@ -11,17 +11,18 @@ import MapKit
 
 public class VTPointAnnotation: MKPointAnnotation {
     
-    public var uniqueKey: String!
-    public var indexPath: NSIndexPath!
+    public var id: String!
+    //public var indexPath: NSIndexPath!
     
-    public init(coord: CLLocationCoordinate2D) {
+    public init(coord: CLLocationCoordinate2D, id uniqueKey: String) {
         super.init()
         coordinate = coord
+        id = uniqueKey
     }
     
     public override func isEqual(object: AnyObject?) -> Bool {
         if let anno = object as? VTPointAnnotation {
-            if coordinate.latitude == anno.coordinate.latitude && coordinate.longitude == anno.coordinate.longitude {
+            if id == anno.id {
                 return true
             }
         }

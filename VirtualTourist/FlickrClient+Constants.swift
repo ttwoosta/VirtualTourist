@@ -38,6 +38,7 @@ extension FlickrClient {
         static public let Format = "format"
         static public let NoJsonCallback = "nojsoncallback"
         static public let PerPage = "per_page"
+        static public let Page = "page"
     }
     
     public struct BoundingBox {

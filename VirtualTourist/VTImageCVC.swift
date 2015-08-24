@@ -13,14 +13,23 @@ import CoreData
 
 class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate {
 
+    weak var pinDetailVC: VTPinDetailVC!
     var pinID: NSManagedObjectID!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // let user select multiple items
+        collectionView?.allowsMultipleSelection = true
         
         // setup fetched result controller
         self.frc.delegate = self
         self.frc.performFetch(nil)
+    }
+    
+    deinit {
+        VTImageFetcher.cancelAllTasks()
+        println("Deinit \(self)")
     }
     
     //////////////////////////////////
@@ -28,7 +37,7 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
     /////////////////////////////////
     
     func controllerWillChangeContent(controller: VTFetchedResultsController) {
-        println("frc will change content")
+        //println("frc will change content")
     }
     
     func controllerDidChangeContent(controller: VTFetchedResultsController, updateResults: [VTFetchedResult]) {
@@ -58,6 +67,14 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
     
     func configCell(cell: VTImageCell, photoObject: VTPhoto) {
         
+        // TODO: get image from cache
+        if (photoObject.image != nil) {
+            cell.imageView.image = photoObject.image
+            return
+        }
+        
+        // disable new collection button
+                
         // start spin and clear previous image
         cell.spinner.startAnimating()
         cell.imageView.image = nil
@@ -69,27 +86,26 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
         // create url request
         let URLRequest = NSURLRequest(URL: photoObject.imageURL)
         
-        // get image from photo object
-        if (photoObject.image != nil) {
-            cell.imageView.image = photoObject.image
-            return
-        }
+        // disable new collection barItem
+        pinDetailVC.bottomBar.style = .Fetching
         
         // download image for photo
-        let task = VTImageFetcher.fetchImageForURL(photoObject.imageURL, getImageHandler: {image, error in
+        let task = VTImageFetcher.fetchImageForURL(photoObject.imageURL, getImageHandler: {image, imageData, error in
             if image != nil {
                 if cell.identifier == identifier {
-                    photoObject.image = image
                     cell.imageView.image = image
                     cell.spinner.stopAnimating()
+                    
+                    // store image to cache
+                    photoObject.setImage(image, imageData: imageData)
                 }
             }
             else {
                 println(error)
             }
         },
-        completionHandler: {
-            
+        completionHandler: {[weak self] in
+            self?.pinDetailVC.bottomBar.style = .NewCollection
         })
         
         // set task for cancellation
@@ -97,11 +113,10 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
     }
     
     //////////////////////////////////
-    // MARK: CollectionView Delegate
+    // MARK: CollectionView DataSource
     /////////////////////////////////
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        println("Number of items \(self.frc.numberOfItemsInSection(section))")
         return self.frc.numberOfItemsInSection(section)
     }
     
@@ -117,17 +132,29 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
     }
     
     //////////////////////////////////
+    // MARK: CollectionView Delegate
+    /////////////////////////////////
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        pinDetailVC.bottomBar.style = .DeletePhotos
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        if collectionView.indexPathsForSelectedItems().count == 0 {
+            pinDetailVC.bottomBar.style = .NewCollection
+        }
+    }
+    
+    //////////////////////////////////
     // MARK: Core data stack
     /////////////////////////////////
     
-    lazy var sharedContext: NSManagedObjectContext? = {
-        return VTDataManager.sharedInstance().managedObjectContext
-    }()
-    
     lazy var frc: VTFetchedResultsController = {
         
+        let context = VTDataManager.sharedInstance().managedObjectContext!
+        
         // retrieve selected pin object
-        let selectedPin = self.sharedContext?.objectRegisteredForID(self.pinID) as! VTPin
+        let selectedPin = context.objectRegisteredForID(self.pinID) as! VTPin
         
         let fetchRequest = NSFetchRequest(entityName: VTDataManager.EntityNames.Photo)
         
@@ -136,7 +163,7 @@ class VTImageCVC: UICollectionViewController, VTFetchedResultsControllerDelegate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         fetchRequest.fetchBatchSize = 20
         
-        let frc = VTFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext!, sectionNameKeyPath: nil, cacheName: nil)
+        let frc = VTFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         return frc
         
     }()
