@@ -67,14 +67,14 @@ class VTMapVC: UIViewController, NSFetchedResultsControllerDelegate, MKMapViewDe
         }
     }
     
-    @IBAction func editBarItemAction(sender: UIBarButtonItem) {
+    func editBarItemAction(sender: UIBarButtonItem) {
         UIView.animateWithDuration(0.25) {
             self.state = .Editing
             self.view.layoutIfNeeded()
         }
     }
     
-    @IBAction func doneBarItemAction(sender: UIBarButtonItem) {
+    func doneBarItemAction(sender: UIBarButtonItem) {
         UIView.animateWithDuration(0.25) {
             self.state = .Default
             self.view.layoutIfNeeded()
@@ -137,9 +137,10 @@ class VTMapVC: UIViewController, NSFetchedResultsControllerDelegate, MKMapViewDe
             dragingPin.coordinate = coordinate
         }
         else {
+            // save dropped pin
             VTDataManager.sharedInstance().saveContext()
             
-            // search photos for selected pin
+            // search photos for drop pin
             VTDataManager.searchPhotosFor(dragingPin, page: 1) { fetchedResult, error  in
                 
                 switch fetchedResult {
@@ -200,7 +201,7 @@ class VTMapVC: UIViewController, NSFetchedResultsControllerDelegate, MKMapViewDe
             pinView.pinColor = .Red
         }
         else {
-            pinView!.annotation = annotation
+            pinView.annotation = annotation
             pinView.pinColor = .Red
         }
         
@@ -223,6 +224,7 @@ class VTMapVC: UIViewController, NSFetchedResultsControllerDelegate, MKMapViewDe
             if let selectedPin = pinForUniqueID(anno.id) {
                 if self.state == .Editing {
                     self.sharedContext?.deleteObject(selectedPin)
+                    VTDataManager.sharedInstance().saveContext()
                 }
                 else {
                     if let vc = storyboard?.instantiateViewControllerWithIdentifier("PinDetailVC") as? VTPinDetailVC {

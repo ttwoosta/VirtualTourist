@@ -72,19 +72,18 @@ class VTPinDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // retrieve selected pin object
-        let selectedPin = self.sharedContext?.objectRegisteredForID(pinID) as! VTPin
-        
         // add pin's annotation
-        let anno = selectedPin.pointAnnotation()
+        let anno = self.selectedPin.pointAnnotation()
         mapView.addAnnotation(anno)
         
-        // zoom map
-        let span = MKCoordinateSpanMake(1.5, 2.5)
-        let region = MKCoordinateRegionMake(anno.coordinate, span)
-        mapView.region = region
         
-        // setup bottom bar actions
+        // retrieve region setting from userDefault
+        if let region = NSUserDefaults.standardUserDefaults().defaultRegion() {
+            let newRegion = MKCoordinateRegionMake(anno.coordinate, region.span)
+            mapView.region = newRegion
+        }
+        
+        // setup bottom bar items actions
         bottomBar.newCollectionItem.target = self
         bottomBar.newCollectionItem.action = Selector("newCollectionAction:")
         bottomBar.removePhotoItem.target = self
@@ -98,11 +97,8 @@ class VTPinDetailVC: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // retrieve selected pin object
-        let selectedPin = self.selectedPin
-        
         // selectedPin's photos collection already fetched
-        if selectedPin.photos.count > 0 {
+        if self.selectedPin.photos.count > 0 {
             self.state = .Default
         }
         else {

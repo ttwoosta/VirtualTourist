@@ -34,6 +34,9 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
         // timeout for requests with be 30 second
         conf.timeoutIntervalForRequest = 30
         
+        // maximun connection
+        conf.HTTPMaximumConnectionsPerHost = 5
+        
         // url cache configurations
         conf.requestCachePolicy = NSURLRequestCachePolicy.ReloadRevalidatingCacheData
         conf.URLCache = NSURLCache.sharedURLCache()
@@ -69,6 +72,7 @@ public class VTImageFetcher: NSObject, NSURLSessionDelegate {
             
             if error != nil {
                 completionHandler(image: nil, imageData: nil, error: error)
+                return
             }
             
             // convert to Http response
