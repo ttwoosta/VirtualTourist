@@ -59,12 +59,9 @@ public class VTPhoto: VTObject {
         }
     }
     
-    override public func willSave() {
-        if deleted {
-            VTDataManager.Caches.imageCache.storeImage(nil, imageData: nil, withIdentifier: id)
-        }
-        
-        super.willSave()
+    override public func prepareForDeletion() {
+        super.prepareForDeletion()
+        VTDataManager.Caches.imageCache.storeImage(nil, imageData: nil, withIdentifier: id)
     }
     
     var image: UIImage? {
